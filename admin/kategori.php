@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Beranda - FurniQ Admin</title>
+  <title>Kategori Produk - FurniQ Admin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -50,7 +50,14 @@
         </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-    
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search-heart"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
@@ -96,7 +103,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Beranda</span>
         </a>
@@ -143,6 +150,7 @@
           <span>Pengguna</span>
         </a>
       </li><!-- End Pengguna Page Nav -->
+
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -150,81 +158,110 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Beranda</h1>
+      <h1>Kategori Produk</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-          <li class="breadcrumb-item active">Beranda</li>
+          <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+          <li class="breadcrumb-item active">Kategori Produk</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    
-    <section class="section dashboard">
-      <div class="row">
 
-        <!-- Left side columns -->
-        <div class="col-lg-8">
-          <div class="row">
-            <!-- Welcome Card -->
-            <div class="col-12">
-              <div class="card info-card customers-card shadow-sm w-100">
-                <div class="card-body text-center py-4">
-                  <h4 class="mb-2">Selamat datang di Website Admin
-                <stong>FurniQ!</strong></h4>
-               <p class="text-muted small mb-0">Kelola produk, transaksi, dan pelanggan dengan mudah.</p>
-             </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="t_kategori.php" class="btn btn-primary mt-3">
+                        <i class="bi bi-plus-lg"></i> Tambah Data
+                    </a>
+                </div>
             </div>
-          </div><!-- End Welcome Card -->
-
-            <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Pesanan <span>| Semua Waktu</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-basket"></i> <!-- Ikon keranjang belanja -->
-                    </div>
-                    <div class="ps-3">
-                      <h6>145</h6>
-
-                    </div>
-                  </div>
-                </div>
+        </div>
+    </div>
 
               </div>
-            </div><!-- End Sales Card -->
-
-            <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Pendapatan <span>| Hari Ini</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>Rp. 32.555</h6>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Revenue Card -->
-
           </div>
-        </div><!-- End Left side columns -->
 
-      </div>
-    </section>
+        </div>
 
-  </main><!-- End #main -->
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Table with stripped rows</h5>
+
+              <!-- Table with stripped rows -->
+              <table class="table table-striped mt-2">
+                <thead>
+                  <tr>
+                    <th >No</th>
+                    <th >Nama Kategori</th>
+                    <th >Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include "koneksi.php";
+                    $no = 1;
+
+                    // Cek apakah ada pencarian
+                    $query = isset($_POST['query']) ?
+                    mysqli_real_escape_string(koneksi, $_POST['query']) : '';
+
+                    // Query dasar
+                    $sql_query = "SELECT id_kategori, nm_kategori FROM tb_kategori";
+
+                    // Jika ada pencarian, tambahkan kondisi WHERE
+                    if (!empty($query)) {
+                      $sql_query .= " WHERE nm_kategori LIKE '%$query%' ";
+                    }
+                    
+                    $sql = mysqli_query($koneksi, $sql_query);
+
+                    if (mysqli_num_rows($sql) > 0) {
+                      while ($hasil = mysqli_fetch_array($sql)) {
+                    ?>
+                        <tr>
+                          <td><?php echo $no++; ?></td>
+                          <td><?php echo $hasil
+                          ['nm_kategori']; ?></td>
+                          <td>
+                            <a href="e_kategori.php?id=<?php echo $hasil
+                            ['id_kategori']; ?>"class="btn btn-warning">
+                              <i class="bi bi-pencil-square"></i>
+                             </a>
+                             <a href="h_kategori.php?id=<?php echo $hasil
+                             ['id_kategori']; ?>"class="btn btn-danger"
+                             onclick="return confirm
+                             ('Apakah Anda Yakin Ingin Menghapus Data?')">
+                              <i class="bi bi-trash"></i>
+                             </a>
+                            </td>
+                          </tr>
+                        <?php
+                        }
+                      } else {
+                        ?>
+                        <tr>
+                          <td colspan="3"
+                          class="text-center">Data tidak ditemukan</td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+
+                    </tbody>
+                  </table>
+                  <!-- End Table with stripped rows -->
+
+                </div>
+              </div>
+
+             </div>
+           </div>
+          </section>
+
+        </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">

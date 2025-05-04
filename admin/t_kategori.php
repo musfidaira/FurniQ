@@ -1,3 +1,30 @@
+<?php
+include "koneksi.php";
+
+if (isset($_POST['simpan'])) {
+  $auto = mysqli_query($koneksi, "select max(id_kategori) as max_code from
+  tb_kategori");
+  $hasil = mysqli_fetch_array($auto);
+  $code = $hasil['max_code'];
+  $urutan = (int) substr($code, 1, 3);
+  $urutan++;
+  $huruf = "K";
+  $id_kategori = $huruf . sprintf("%03s", $urutan);
+  $nm_kategori = $_POST['nm_kategori'];
+
+  $query = mysqli_query($koneksi, "INSERT INTO tb_kategori(id_kategori,
+  nm_kategori) VALUES ('$id_kategori', '$nm_kategori')");
+  if ($query) {
+    echo "<script>alert('Data Berhasil Ditambahkan!')</script>";
+    header("refresh:0, kategori.php");
+  } else {
+    echo "<script>alert('Data Gagal Ditambahkan!')</script>";
+    header("refresh:0, kategori.php");
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +32,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Beranda - FurniQ Admin</title>
+  <title>Kategori Produk - FurniQ</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -47,10 +74,17 @@
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">FurniQ</span>
-        </a>
+      </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-    
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search-heart"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
@@ -59,6 +93,8 @@
           <i class="bi bi-search-heart"></i>
           </a>
         </li><!-- End Search Icon-->
+
+        <li class="nav-item dropdown">
 
         <li class="nav-item dropdown pe-3">
 
@@ -96,7 +132,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Beranda</span>
         </a>
@@ -143,6 +179,7 @@
           <span>Pengguna</span>
         </a>
       </li><!-- End Pengguna Page Nav -->
+
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -150,77 +187,40 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Beranda</h1>
+      <h1>Kategori Produk</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-          <li class="breadcrumb-item active">Beranda</li>
+          <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+          <li class="breadcrumb-item">Kategori Produk</li>
+          <li class="breadcrumb-item active">Tambah</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    
-    <section class="section dashboard">
+   
+    <section class="section">
       <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <form class="row g-3 mt-2" method="post">
+                <div class="col-12">
+                  <label for="nm_kategori"
+                  class="form-label">Nama Kategori</label>
+                  <input type="text" class="form-control"
+                  id="nm_kategori" name="nm_kategori"
+                  placeholder="Masukkan Nama Kategori Produk">
+                </div>
+                <div class="text-center">
+                  <button type="reset" class="btn
+                  btn-secondary">Reset</button>
+                  <button type="submit" class="btn btn-primary"
+                  name="simpan">Simpan</button>
+                </div>
+              </form>
 
-        <!-- Left side columns -->
-        <div class="col-lg-8">
-          <div class="row">
-            <!-- Welcome Card -->
-            <div class="col-12">
-              <div class="card info-card customers-card shadow-sm w-100">
-                <div class="card-body text-center py-4">
-                  <h4 class="mb-2">Selamat datang di Website Admin
-                <stong>FurniQ!</strong></h4>
-               <p class="text-muted small mb-0">Kelola produk, transaksi, dan pelanggan dengan mudah.</p>
-             </div>
             </div>
-          </div><!-- End Welcome Card -->
-
-            <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Pesanan <span>| Semua Waktu</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-basket"></i> <!-- Ikon keranjang belanja -->
-                    </div>
-                    <div class="ps-3">
-                      <h6>145</h6>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Sales Card -->
-
-            <!-- Revenue Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Pendapatan <span>| Hari Ini</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>Rp. 32.555</h6>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Revenue Card -->
-
           </div>
-        </div><!-- End Left side columns -->
-
+        </div>
       </div>
     </section>
 
