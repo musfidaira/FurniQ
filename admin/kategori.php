@@ -178,17 +178,7 @@
             </div>
         </div>
     </div>
-
-              </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Table with stripped rows</h5>
+    
 
               <!-- Table with stripped rows -->
               <table class="table table-striped mt-2">
