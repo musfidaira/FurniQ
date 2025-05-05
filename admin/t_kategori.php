@@ -80,13 +80,7 @@ if (isset($_POST['simpan'])) {
     
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-          <i class="bi bi-search-heart"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
+        
         <li class="nav-item dropdown">
 
         <li class="nav-item dropdown pe-3">
@@ -183,7 +177,7 @@ if (isset($_POST['simpan'])) {
       <h1>Kategori Produk</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
           <li class="breadcrumb-item">Kategori Produk</li>
           <li class="breadcrumb-item active">Tambah</li>
         </ol>
