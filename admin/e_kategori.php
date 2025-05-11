@@ -1,5 +1,21 @@
 <?php
+session_start();
 include "koneksi.php";
+
+// Cek apakah sudah login
+if (!isset($_SESSION["login"])) { 
+  header("Location: login.php");
+  exit;
+}
+
+// Cek apakah status tersedia dan pastikan user adalah admin
+if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
+  echo "<script>
+  alert('Akses Ditolak! Halaman ini hanya untuk Admin.');
+  window.location.href='login.php';
+</script>";
+exit;
+}
 
 $id = $_GET['id'];
 $sql = mysqli_query($koneksi, "SELECT * FROM tb_kategori WHERE id_kategori='$id'");
@@ -82,12 +98,12 @@ if (isset($_POST['simpan'])) {
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/thv.jpg" alt="Profile" class="rounded-circle">
+            <img src="assets/img/aku.jpg" alt="Profile" class="rounded-circle">
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Fida</h6>
+              <h6><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Guest'; ?></h6>
               <span>Admin</span>
             </li>
             <li>
@@ -95,7 +111,7 @@ if (isset($_POST['simpan'])) {
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="logout.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -130,28 +146,28 @@ if (isset($_POST['simpan'])) {
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="produk.php">
-        <i class="bi bi-box2-heart"></i>
+        <i class="bi bi-shop"></i>
           <span>Produk</span>
         </a>
       </li><!-- End Produk Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="keranjang.php">
-        <i class="bi bi-cart3"></i>
+        <i class="bi bi-cart"></i>
           <span>Keranjang</span>
         </a>
       </li><!-- End Keranjang Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="transaksi.php">
-        <i class="bi bi-wallet2"></i>
+        <i class="bi bi-receipt"></i>
           <span>Transaksi</span>
         </a>
       </li><!-- End Transaksi Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="laporan.php">
-        <i class="bi bi-flag"></i>
+        <i class="bi bi-file-earmark-bar-graph"></i>
           <span>Laporan</span>
         </a>
       </li><!-- End Laporan Page Nav -->
