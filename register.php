@@ -132,7 +132,7 @@ $data = mysqli_fetch_array($sql);
                             <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;<script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved | FurniQ by <a href="#" target="_blank">Musfida Irawan Putri</a>
+                                </script> All rights reserved | FurniQ by <a href="https://instagram.com/ffida.iraa/" target="_blank">Musfida Irawan Putri</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
                         </div>
                     </div>
