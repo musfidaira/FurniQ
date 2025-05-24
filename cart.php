@@ -138,7 +138,7 @@
           ?>
 
           <form action="update_cart.php" method="POST">
-            <table clas="table">
+            <table class="table">
               <thead>
                 <tr>
                   <th style="width: 40%;">Produk</th>
