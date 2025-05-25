@@ -50,7 +50,7 @@ if ($subtotal > 700000 && $subtotal <= 1500000) {
     $diskon = 0.08 * $subtotal;
 }
 
-$total_bayar = $subtotal - $diskon
+$total_bayar = $subtotal - $diskon;
 
 // Generate ID jual otomatis
 $query_id = "SELECT MAX(id_jual) AS last_id FROM tb_jual";
