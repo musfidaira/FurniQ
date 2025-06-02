@@ -63,6 +63,24 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword" value="<?php echo isset($_POST['query']) 
+                ? htmlspecialchars($_POST['query']) : ''; ?>">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+    <!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+          <i class="bi bi-search-heart"></i>
+          </a>
+        </li><!-- End Search Icon-->
     
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
@@ -196,8 +214,8 @@ if (!isset($_SESSION["status"]) || $_SESSION["status"] !== "admin") {
                                     include "koneksi.php";
                                     $no = 1;
 
-                                    // Ambil keyword pencarian dari GET
-                                    $query = isset($_GET['query']) ? mysqli_real_escape_string($koneksi, $_GET['query']) : '';
+                                    // Ambil keyword pencarian dari POST
+                                    $query = isset($_POST['query']) ? mysqli_real_escape_string($koneksi, $_POST['query']) : '';
 
                                     // Tambahkan WHERE jika query tidak kosong
                                     $sql_query = "SELECT tb_produk.*, tb_kategori.nm_kategori FROM tb_produk 
