@@ -127,7 +127,7 @@ exit;
             <li class="nav-item">
                 <a class="nav-link collapsed" href="kategori.php">
                     <i class="bi bi-tags"></i>
-                    <span>Kategori</span>
+                    <span>Kategori Produk</span>
                 </a>
             </li><!-- End Kategori Page Nav -->
 
