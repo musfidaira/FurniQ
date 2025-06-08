@@ -190,7 +190,18 @@ exit;
             </div>
           </div><!-- End Welcome Card -->
 
-            <!-- Sales Card -->
+          <?php
+          // Koneksi ke database
+          include 'koneksi.php'; // Sesuaikan dengan file koneksi yang kamu gunakan
+
+          // Ambil total jumlah pesanan dari tabel tb_pesanan
+          $query = "SELECT COUNT(*) AS total_pesanan FROM tb_jual";
+          $result = mysqli_query($koneksi, $query);
+          $data = mysqli_fetch_assoc($result);
+          $totalPesanan = $data['total_pesanan'] ?? 0; // Default ke 0 jika tidak ada pesanan
+          ?>
+
+            <!-- Order Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
@@ -202,14 +213,29 @@ exit;
                       <i class="bi bi-basket"></i> <!-- Ikon keranjang belanja -->
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6><?php echo $totalPesanan; ?></h6>
 
                     </div>
                   </div>
                 </div>
 
               </div>
-            </div><!-- End Sales Card -->
+            </div><!-- End Order Card -->
+
+            <?php
+            include 'koneksi.php';
+
+            // Ambil tanggal hari ini
+            $tanggalHariIni = date("Y-m-d");
+
+            // Query langsung ke tb_jual berdasarkan tanggal hari ini
+            $query = "SELECT SUM(total) AS total_revenue FROM tb_jual WHERE DATE
+            (tgl_jual) = '$tanggalHariIni'";
+
+            $result = mysqli_query($koneksi, $query);
+            $data = mysqli_fetch_assoc($result);
+            $totalRevenue = $data['total_revenue'] ?? 0;
+            ?>
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
@@ -223,7 +249,7 @@ exit;
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>Rp. 32.555</h6>
+                      <h6>Rp<?php echo number_format($totalRevenue, 0, ',', '.'); ?></h6>
 
                     </div>
                   </div>

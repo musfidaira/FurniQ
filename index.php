@@ -138,12 +138,12 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Elegan & Nyaman
-                                                Furnitur Berkualitas</h1>
-                                            <p>Hadirkan kenyamanan dan keindahan di rumah Anda dengan koleksi furnitur terbaik.
-                                                Desain modern, bahan berkualitas, dan harga terbaik untuk Anda.
+                                            <h1>Wujudkan Hunian Impian</h1>
+                                            <p>Selami koleksi furnitur yang dirancang untuk memperkaya setiap momen di rumah Anda.
+                                                Dengan desain modern, sentuhan estetika, dan palet warna soft yang menenangkan, kami hadirkan harmoni
+                                                sempurna untuk ruang masa kini Anda.
                                             </p>
-                                            <a href="belanja.php" class="btn_2">Lihat Koleksi</a>
+                                            <a href="belanja.php" class="btn_2">Mulai Belanja</a>
                                         </div>
                                     </div>
                                 </div>
@@ -156,12 +156,11 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Sofa Kayu & Kain
-                                                Elegan untuk Rumah</h1>
-                                            <p>Ubah suasana rumah jadi lebih hangat dan nyaman dengan pilihan sofa berkualitas tinggi.
-                                                Dirancang untuk kenyamanan dan keindahan yang tahan lama.
+                                            <h1>Elegansi yang Menyapa</h1>
+                                            <p>Rasakan keindahan fungsional berpadu dengan desain elegan dan modern yang memukau.
+                                                Setiap warna lembut menciptakan atmosfer yang tenang, elegan, dan penuh gaya di setiap sudut rumah Anda.
                                             </p>
-                                            <a href="belanja.php" class="btn_2">Belanja Sekarang</a>
+                                            <a href="belanja.php" class="btn_2">Temukan Sekarang</a>
                                         </div>
                                     </div>
                                 </div>
@@ -174,12 +173,12 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Sofa Minimalis
-                                                Sentuhan Alami</h1>
-                                            <p>Desain elegan dengan nuansa kayu dan kain pilihan,
-                                                sempurna untuk mempercantik ruang keluarga Anda.
+                                            <h1>Hadirkan Gaya Modern yang Abadi</h1>
+                                            <p>Ubah ruang hidup Anda menjadi stylish dan nyaman. Koleksi furnitur yang menampilkan desain 
+                                                modern yang cerdas, estetika yang menawan, dan palet warna soft untuk memancarkan kedamaian
+                                                & keindahan yang tak lekang oleh waktu. 
                                             </p>
-                                            <a href="belanja.php" class="btn_2">Lihat Produk</a>
+                                            <a href="belanja.php" class="btn_2">Jelajahi Koleksi</a>
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +218,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="section_tittle text-center">
-                        <h2>Temukan <span>Gaya Rumahmu</span></h2>
+                        <h2>Temukan <span>Sentuhan Rumahmu</span></h2>
                     </div>
                 </div>
             </div>
@@ -239,7 +238,7 @@
                                     $nama = $row['nm_produk'];
                                     $harga = number_format($row['harga'], 0, ',', '.');
                                     $gambar = $row['gambar'];
-                            ?>
+                                ?>
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
                                         <img src="admin/produk_img/<?= htmlspecialchars($gambar) ?>" alt="<?= htmlspecialchars($nama) ?>" style="width: 265px; height: 250px; object-fit: cover;">
@@ -272,8 +271,9 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="offer_text">
-                        <h2>Semua Produk Diskon 60%
-                            Hanya Minggu Ini!</h2>
+                        <h2>Jangan Lewatkan! Diskon 60% untuk Seluruh
+                            Item Minggu Ini.
+                        </h2>
                         <div class="date_countdown">
                             <div id="timer">
                                 <div id="days" class="date"></div>
