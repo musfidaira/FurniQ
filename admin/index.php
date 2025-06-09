@@ -110,7 +110,7 @@ exit;
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link" href="index.php">
           <i class="bi bi-house-door"></i>
           <span>Beranda</span>
         </a>
@@ -177,7 +177,7 @@ exit;
       <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <div class="row">
             <!-- Welcome Card -->
             <div class="col-12">
